@@ -1,0 +1,7 @@
+plae 1, 2, East
+mov
+mov
+rubbish "g,"33
+
+move
+report
