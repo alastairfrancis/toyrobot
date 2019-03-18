@@ -9,9 +9,11 @@ namespace ToyRobotLib.Executor
     /// 
     /// name [arg, arg, ...]
     /// </summary>
-    public class CommandParser
+    public static class CommandParser
     {
-        public CommandArgs Parse(string commandString)
+        #region Public Static Methods
+
+        public static CommandArgs Parse(string commandString)
         {
             try
             {
@@ -56,5 +58,7 @@ namespace ToyRobotLib.Executor
 
             return null;
         }
+
+        #endregion
     }
 }

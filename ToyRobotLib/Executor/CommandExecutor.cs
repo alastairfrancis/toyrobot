@@ -11,18 +11,26 @@ namespace ToyRobotLib.Executor
     /// </summary>
     public class CommandExecutor
     {
+        #region Private Properties
+
         private readonly IRobot _robot;
         private readonly IGrid _grid;
         private readonly IOutputWriter _out;
-        private readonly CommandParser _parser;
+        private readonly CommandFactory _factory;
+
+        #endregion
+
+        #region Constructors
 
         public CommandExecutor(IOutputWriter outWriter, IRobot robot, IGrid grid)
         {
-            _parser = new CommandParser();
             _out = outWriter;
             _robot = robot;
             _grid = grid;
+            _factory = new CommandFactory();
         }
+
+        #endregion
 
         #region Public Methods
 
@@ -51,23 +59,14 @@ namespace ToyRobotLib.Executor
         /// </summary>
         public void ExecuteFile(string path)
         {
-            var file = new FileReader();
-
             try
             {
-                if (file.Open(path))
-                {
-                    string line = file.ReadLine();
-                    while (line != null)
-                    {
-                        Execute(line);
-                        line = file.ReadLine();
-                    }
-                }
+                var reader = new FileReader();
+                reader.ProcessFile(path, Execute);
             }
-            finally
+            catch (Exception ex)
             {
-                file.Close();
+                _out.WriteFail(ex);
             }
         }
 
@@ -79,10 +78,10 @@ namespace ToyRobotLib.Executor
         {
             try
             {
-                var args = _parser.Parse(commandString);
+                var args = CommandParser.Parse(commandString);
                 if (args != null)
                 {
-                    return CommandFactory.Create(args);
+                    return _factory.Create(args);
                 }
             }
             catch (Exception ex)

@@ -5,7 +5,13 @@ namespace ToyRobotLib.ToyRobot
 {
     public interface IRobot
     {
+        #region Properties
+
         Vector Position { get; }
+
+        #endregion
+
+        #region Methods
 
         void Reset();
         bool IsValidState();
@@ -13,6 +19,8 @@ namespace ToyRobotLib.ToyRobot
         bool MoveTo(Coordinate coord);
         bool TurnLeft();
         bool TurnRight();
-        bool Rotate(Direction direction);        
+        bool Rotate(Direction direction);
+
+        #endregion
     }
 }

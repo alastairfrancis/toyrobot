@@ -4,46 +4,29 @@ using System.IO;
 namespace ToyRobotLib.IO
 {
     /// <summary>
-    /// Wrapper to read lines from a file.
+    /// Utility to process lines in a file.
     /// </summary>
     public class FileReader
     {
-        private StreamReader _reader;
-
-        public FileReader()
+        /// <summary>
+        /// Process each line in a file.  To stop processing, return false from function parameter.
+        /// </summary>
+        /// <returns>True if all lines processed successfully</returns>
+        public bool ProcessFile(string path, Func<string, bool> processor)
         {
-        }
+            bool ok = true;
 
-        public bool Open(string path)
-        {
-            bool ok = false;
-
-            try
+            using (StreamReader reader = new StreamReader(path))
             {
-                _reader = new StreamReader(path);
-                ok = true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception {ex.Message}");
+                while (ok && !reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    ok = processor(line);
+                }
             }
 
             return ok;
         }
-
-        public string ReadLine()
-        {
-            return _reader.ReadLine();
-        }
-
-        public void Close()
-        {
-            if (_reader != null)
-            {
-                _reader.Close();
-            }
-        }
-
 
     }
 }

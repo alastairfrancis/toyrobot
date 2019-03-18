@@ -7,14 +7,24 @@ namespace ToyRobotLib.Command
     /// </summary>
     public class CommandResult
     {
+        #region Public Properties
+
         public bool OK { get; private set; }
         public string Message { get; private set; }
+
+        #endregion
+
+        #region Constrcutors
 
         public CommandResult(bool ok, string message = "")
         {
             OK = ok;
             Message = message;
         }
+
+        #endregion
+
+        #region Public Methods
 
         public static CommandResult Success(string message = "")
         {
@@ -25,35 +35,7 @@ namespace ToyRobotLib.Command
         {
             return new CommandResult(false, errorMessage);
         }
-    }
 
-    public class CommandResult<T>
-    {
-        public T Value { get; set; }
-        public bool OK { get; private set; }
-        public string Message { get; private set; }
-
-        public CommandResult(bool ok, string message = "")
-        {
-            OK = ok;
-            Message = message;
-        }
-
-        public CommandResult(bool ok, T result, string message = "")
-        {
-            OK = ok;
-            Value = result;
-            Message = message;
-        }
-
-        public static CommandResult<T> Success(T result, string message = "")
-        {
-            return new CommandResult<T>(true, result, message);
-        }
-
-        public static CommandResult<T> Fail(string errorMessage)
-        {
-            return new CommandResult<T>(false, errorMessage);
-        }
+        #endregion
     }
 }

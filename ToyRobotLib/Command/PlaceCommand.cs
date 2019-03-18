@@ -12,9 +12,19 @@ namespace ToyRobotLib.Command
     /// </summary>
     public class PlaceCommand : ICommand
     {
+        #region Private Properties
+
         private readonly Vector _position;
 
+        #endregion
+
+        #region Public Properties
+
         public const string Name = "place";
+
+        #endregion
+
+        #region Constructors
 
         public PlaceCommand(Vector position)
         {
@@ -25,6 +35,10 @@ namespace ToyRobotLib.Command
         {
             _position = new Vector(args.GetInt(0), args.GetInt(1), args.GetHeading(2));
         }
+
+        #endregion
+
+        #region ICommand
 
         public CommandResult Execute(IRobot robot, IGrid grid, IOutputWriter output)
         {
@@ -38,5 +52,6 @@ namespace ToyRobotLib.Command
             return CommandResult.Fail($@"Invalid position [{ _position.X}, {_position.Y}]");
         }
 
+        #endregion
     }
 }

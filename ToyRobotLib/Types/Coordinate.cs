@@ -7,8 +7,14 @@ namespace ToyRobotLib.Types
     /// </summary>
     public class Coordinate
     {
+        #region Public Properties
+
         public int X { get; set; }
         public int Y { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         public Coordinate(int x, int y)
         {
@@ -21,5 +27,7 @@ namespace ToyRobotLib.Types
             X = other.X;
             Y = other.Y;
         }
+
+        #endregion
     }
 }

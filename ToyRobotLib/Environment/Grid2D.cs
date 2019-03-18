@@ -11,7 +11,13 @@ namespace ToyRobotLib.Environment
     /// </summary>
     public class Grid2D : IGrid
     {
+        #region Private Properties
+
         private GridCell[,] _grid;
+
+        #endregion
+
+        #region Public Properties
 
         public int Width
         {
@@ -29,6 +35,10 @@ namespace ToyRobotLib.Environment
             }
         }
 
+        #endregion
+
+        #region Constructors
+
         public Grid2D()
         {
         }
@@ -37,6 +47,10 @@ namespace ToyRobotLib.Environment
         {
             CreateGrid(width, height);
         }
+
+        #endregion
+
+        #region IGrid
 
         /// <summary>
         /// Returns cell at position, or null if the position is out of bounds
@@ -111,50 +125,44 @@ namespace ToyRobotLib.Environment
         {
             bool result = false;
             var rows = new List<string>();
-            var file = new FileReader();
 
             try
             {
-                if (file.Open(path))
+                var reader = new FileReader();
+                reader.ProcessFile(path, (line) =>
                 {
-                    string line = file.ReadLine();
-                    while (line != null)
-                    {                        
-                        // the y-axis in the file is ascending upwards
-                        // insert into front so the last line read corresponds to y = 0
-                        rows.Insert(0, line);
-                        line = file.ReadLine();
-                    }
+                    rows.Insert(0, line);
+                    return true;
+                });
 
-                    int height = rows.Count;
-                    int width = rows.First().Length;
+                int height = rows.Count;
+                int width = rows.First().Length;
 
-                    _grid = new GridCell[width, height];
+                GridCell [,] newGrid = new GridCell[width, height];
 
-                    for (int y = _grid.GetLowerBound(0); y <= _grid.GetUpperBound(0); ++y)
+                for (int y = newGrid.GetLowerBound(0); y <= newGrid.GetUpperBound(0); ++y)
+                {
+                    var cells = rows[y].ToCharArray();
+                    for (int x = newGrid.GetLowerBound(1); x <= newGrid.GetUpperBound(1); ++x)
                     {
-                        var cells = rows[y].ToCharArray();
-                        for (int x = _grid.GetLowerBound(1); x <= _grid.GetUpperBound(1); ++x)
-                        {
-                            bool isClear = (rows[y][x] == 'o');
-                            _grid[x, y] = new GridCell(isClear);
-                        }
+                        bool isClear = (rows[y][x] == 'o');
+                        newGrid[x, y] = new GridCell(isClear);
                     }
-
-                    result = true;
                 }
+
+                _grid = newGrid;
+                result = true;
             }
             catch (Exception)
             {
+                // creation failed, the old grid will remain unchanged
                 _grid = null;
                 result = false;
-            }
-            finally
-            {
-                file.Close();
             }
 
             return result;
         }
+
+        #endregion
     }
 }

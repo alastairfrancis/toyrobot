@@ -7,9 +7,7 @@ namespace ToyRobotLib.IO
     /// </summary>
     public class ConsoleWriter : IOutputWriter
     {
-        public ConsoleWriter()
-        {
-        }
+        #region IOutputWriter
 
         public void Write(string message)
         {
@@ -44,5 +42,6 @@ namespace ToyRobotLib.IO
             Console.ResetColor();
         }
 
+        #endregion
     }
 }

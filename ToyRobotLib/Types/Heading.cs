@@ -3,7 +3,7 @@
 namespace ToyRobotLib.Types
 {
     /// <summary>
-    /// Heading for robot movement, and direction it's facing.
+    /// Robot heading.
     /// </summary>
     public enum Heading
     {

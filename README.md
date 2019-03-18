@@ -25,5 +25,7 @@ Unit tests have been implemented in xUnit, and can be run in the Visual Studio t
 An empty rectangular grid can be created, or a grid loaded from file.  In the grid file, empty cells are represented by _o_, any other character represents a blocked cell.
 
 ## Future Enhancements:
-* The solution is implemented as a console application, but the Robot, and Grid could be exposed as services for Web or Service APIs. But this seemed beyond the scope of this exercise.
-* CommandFactory class could use reflection to find all classes implementing the ICommand interface.
+* The solution is implemented as a console application, but the Robot, and Grid could be exposed as services for Web or Service APIs. However, this seemed beyond the scope of the exercise.
+* Headings in command are case sensitive.
+* A more elaborate parser could be implemented that accepts quoted strings, but they weren't required for this exercise.
+

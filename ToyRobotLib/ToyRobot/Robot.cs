@@ -5,16 +5,31 @@ using ToyRobotLib.Extensions;
 namespace ToyRobotLib.ToyRobot
 {
     /// <summary>
-    /// 
+    /// Maintain state of the robot
     /// </summary>
     public class Robot : IRobot
     {
+        #region Public Properties
+
         public Vector Position { get; private set; }
+
+        #endregion
+
+        #region Constructors
 
         public Robot()
         {
             Reset();
         }
+
+        public Robot(Vector initialPosition)
+        {
+            Position = initialPosition;
+        }
+
+        #endregion
+
+        #region IRobot
 
         public void Reset()
         {
@@ -75,5 +90,7 @@ namespace ToyRobotLib.ToyRobot
 
             return result;
         }
+
+        #endregion
     }
 }

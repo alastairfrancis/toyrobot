@@ -12,11 +12,21 @@ namespace ToyRobotLib.Command
     /// </summary>
     public class MoveCommand : ICommand
     {
+        #region Public Properties
+
         public const string Name = "move";
+
+        #endregion
+
+        #region Constructors
 
         public MoveCommand(CommandArgs arguments)
         {
         }
+
+        #endregion
+
+        #region ICommand
 
         public CommandResult Execute(IRobot robot, IGrid grid, IOutputWriter output)
         {
@@ -55,5 +65,7 @@ namespace ToyRobotLib.Command
 
             return CommandResult.Fail("Position is not valid");
         }
+
+        #endregion
     }
 }

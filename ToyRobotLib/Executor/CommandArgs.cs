@@ -5,10 +5,12 @@ using ToyRobotLib.Types;
 namespace ToyRobotLib.Executor
 {
     /// <summary>
-    /// Command and command arguments.
+    /// Command, and command arguments.
     /// </summary>
     public class CommandArgs
     {
+        #region Public Properties
+
         /// <summary>
         /// Command name
         /// </summary>
@@ -18,11 +20,17 @@ namespace ToyRobotLib.Executor
         /// </summary>
         public List<string> Arguments { get; }
 
+        #endregion
+
+        #region Constructors
+
         public CommandArgs(string cmd, List<string> args)
         {
             Command = cmd;
             Arguments = args;
         }
+
+        #endregion
 
         #region Public Methods
 

@@ -11,11 +11,21 @@ namespace ToyRobotLib.Command
     /// </summary>
     public class LeftCommand : ICommand
     {
+        #region Public Properties
+
         public const string Name = "left";
+
+        #endregion
+
+        #region Constrcutors
 
         public LeftCommand(CommandArgs arguments)
         {
         }
+
+        #endregion
+
+        #region ICommand
 
         public CommandResult Execute(IRobot robot, IGrid grid, IOutputWriter output)
         {
@@ -25,5 +35,7 @@ namespace ToyRobotLib.Command
             var result = robot.TurnLeft();
             return new CommandResult(result);
         }
+
+        #endregion
     }
 }

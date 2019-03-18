@@ -7,7 +7,13 @@ namespace ToyRobotLib.Types
     /// </summary>
     public class Vector : Coordinate
     {
+        #region Public Properties
+
         public Heading Heading { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         public Vector(int x, int y, Heading direction)
             : base (x, y)
@@ -21,10 +27,16 @@ namespace ToyRobotLib.Types
             Heading = other.Heading;
         }
 
+        #endregion
+
+        #region Public Methods
+
         public void SetPosition(Coordinate coord)
         {
             X = coord.X;
             Y = coord.Y;
         }
+
+        #endregion
     }
 }

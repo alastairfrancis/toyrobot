@@ -7,6 +7,8 @@ namespace ToyRobotLib.Extensions
     /// </summary>
     public static class EnumExtensions
     {
+        #region Public Static Methods
+
         /// <summary>
         /// Get the next enum value, wraps to first value if src is last value
         /// </summary>
@@ -51,5 +53,7 @@ namespace ToyRobotLib.Extensions
 
             return Enum.GetName(typeof(T), src);
         }
+
+        #endregion
     }
 }

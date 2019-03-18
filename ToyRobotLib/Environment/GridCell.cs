@@ -9,16 +9,28 @@ namespace ToyRobotLib.Environment
     /// </summary>
     public class GridCell
     {
+        #region Public Properties
+
         public bool IsClear { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         public GridCell()
         {
             IsClear = true;
         }
 
+        #endregion
+
+        #region Public Methods
+
         public GridCell(bool clear)
         {
             IsClear = clear;
         }
+
+        #endregion
     }
 }

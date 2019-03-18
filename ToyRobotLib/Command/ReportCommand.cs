@@ -11,12 +11,22 @@ namespace ToyRobotLib.Command
     /// Report robot position command
     /// </summary>
     public class ReportCommand : ICommand
-    { 
+    {
+        #region Public Properties
+
         public const string Name = "report";
+
+        #endregion
+
+        #region Constructors
 
         public ReportCommand(CommandArgs args)
         {
         }
+
+        #endregion
+
+        #region ICommand
 
         public CommandResult Execute(IRobot robot, IGrid grid, IOutputWriter output)
         {
@@ -28,5 +38,7 @@ namespace ToyRobotLib.Command
 
             return CommandResult.Success();
         }
+
+        #endregion
     }
 }

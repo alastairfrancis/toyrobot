@@ -7,6 +7,10 @@ namespace ToyRobotLib.Command
 {
     public interface ICommand
     {
+        #region Methods
+
         CommandResult Execute(IRobot robot, IGrid grid, IOutputWriter output);
+
+        #endregion
     }
 }
